@@ -1,0 +1,76 @@
+<div class="container">
+    <ul class="breadcrumb breadcrumb-style">
+        <li><a href="#">Web products list </a><span class="divider">&nbsp;>&nbsp;</span></li>
+        <div *ngIf="product then thenEdit else elseAdd"></div>
+        <ng-template #thenEdit>
+            <li>Edit product</li>
+        </ng-template>
+        <ng-template #elseAdd>
+            <li>Add product</li>
+        </ng-template>
+    </ul>
+
+
+    <div *ngIf="product then thenTitleEdit else elseTitleAdd"></div>
+    <ng-template #thenTitleEdit>
+        <h1>Edit product</h1>
+    </ng-template>
+    <ng-template #elseTitleAdd>
+        <h1>Add product</h1>
+    </ng-template>
+
+    <div *ngIf="isAlertSuccess" class="alert alert-success alert-dismissible " role="alert">
+        {{messageAlert}}
+    </div>
+    <div *ngIf="isAlertDanger" class="alert alert-success alert-danger" role="alert">
+        {{messageAlert}}
+    </div>
+
+    <p>All fields are required</p>
+    <form role="form" aria-label="Add products form" autocomplete="off" [formGroup]="productForm" (ngSubmit)="save()">
+        <div class="form-control form-group form-style">
+            <label for="productName">Product Name:</label>
+            <input class="form-control" type="text" id="productName" name="productName" formControlName="productName" [(ngModel)]="product && product.productName" [class.is-invalid]="productNameNotValid">
+            <p *ngIf="productNameNotValid" class="text-danger">Enter a product name</p>
+
+            <label for="scrumMasterName">Scrum Master:</label>
+            <input class="form-control" type="text" id="scrumMasterName" name="scrumMasterName" formControlName="scrumMasterName" [(ngModel)]="product && product.scrumMasterName" [class.is-invalid]="scrumMasterNameNotValid">
+            <p *ngIf="scrumMasterNameNotValid" class="text-danger">Enter a scrum master</p>
+
+            <label for="productOwnerName">Product Owner:</label>
+            <input class="form-control" type="text" id="productOwnerName" name="productOwnerName" formControlName="productOwnerName" [(ngModel)]="product && product.productOwnerName" [class.is-invalid]="productOwnerNameNotValid">
+            <p *ngIf="productOwnerNameNotValid" class="text-danger">Enter a product owner</p>
+
+            <div>
+                <div class="developer-style">
+                    <label for="Developers">Developer Names:</label>
+                    <button class="btn btn-primary mb-2 btn-add" id="addDeveloper" name="addDeveloper" aria-label="Add developer" type="button" (click)="addDeveloper()">         
+                    <i class="fas fa-solid fa-plus"></i>
+                 </button>
+                </div>
+                <div class="form-row" formArrayName="Developers" *ngFor="let control of Developers.controls; let i = index">
+                    <input class="form-control input-add-style" type="text" id="Developers" name="Developers" [formControlName]="i" [class.is-invalid]="productNameNotValid" required="required">
+                    <button class="btn btn-danger btn-delete" (click)="deleteDeveloper(i)">
+                    <i class="fas fa-regular fa-minus"></i>
+                </button>
+                </div>
+                <p *ngIf="DevelopersNotValid" class="text-danger">Enter at least one developer</p>
+            </div>
+
+            <label for="startDate" *ngIf="!product">Start Date:</label>
+            <input class="form-control" type="text" id="StartDate" name="StartDate" formControlName="startDate" aria-label="startDate" [(ngModel)]="product && product.startDate" *ngIf="!product?.productId" [class.is-invalid]="startDateNotValid" placeholder="yyyy/mm/dd"
+                required>
+            <p *ngIf="startDateNotValid && !product" class="text-danger">Enter a start date</p>
+            <p *ngIf="startDateFormatNotValid && !product" class="text-danger">Start date has to have the format: yyyy/mm/dd</p>
+
+            <label for="methodology">Methodology:</label>
+            <div>
+                <select id="methodology" name="methodology" formControlName="methodology">
+            <option value="Agile">Agile</option>
+            <option value="Waterfall" selected>Waterfall</option>
+        </select>
+            </div>
+        </div>
+        <button type="submit " class="btn" aria-label="Save changes">Save</button>
+    </form>
+</div>

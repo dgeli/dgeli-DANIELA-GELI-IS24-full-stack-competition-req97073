@@ -1,0 +1,86 @@
+<h1>Web products list</h1>
+
+<div *ngIf="isAlertSuccess" class="alert alert-success alert-dismissible " role="alert">
+    {{messageAlert}}
+</div>
+<div *ngIf="isAlertDanger" class="alert alert-success alert-danger" role="alert">
+    {{messageAlert}}
+</div>
+
+<form [formGroup]="searchForm" (ngSubmit)="search()" aria-label="Search product form" class="form-inline">
+    <div class="form-group">
+        <div class="form-row align-items-center mb-2">
+            <div class="col-auto">
+                <label for="scrumMasterItem">Scrum master name: </label>
+                <input type="text" class="form-control form-control-sm mb-2 mr-2" id="scrumMasterItem" name="scrumMasterItem" formControlName="scrumMasterItem">
+            </div>
+            <div class="col-auto">
+                <label for="developerItem">Developer name: </label>
+                <input type="text" class="form-control form-control-sm mb-2 mr-2" id="developerItem" name="developerItem" formControlName="developerItem">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2 btn-block btn-style" name="Search product" aria-label="Search product"><i class="fas fa-search search-icon "></i>Search</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="table-heading-style">
+    <p class="label-style">Total quantity of products: {{countProducts}}</p>
+    <a class="btn" [routerLink]="['/addProduct']" aria-label="Add a new product">Add</a>
+</div>
+
+<div class="table-responsive">
+    <table summary="List of products" class="table table-sm table-container">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Product Number</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Scrum Master</th>
+                <th scope="col">Product Owner</th>
+                <th scope="col">Developer Names</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Methodology</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of filteredProductsList; let i=index">
+                <td>{{product.productId}}</td>
+                <td>{{product.productName}}</td>
+                <td>{{product.scrumMasterName}}</td>
+                <td>{{product.productOwnerName}}</td>
+                <td>
+                    <div *ngFor="let developer of product.Developers">{{developer}}</div>
+                </td>
+                <td>{{product.startDate}}</td>
+                <td>{{product.methodology}}</td>
+                <td>
+                    <a class="btn" [routerLink]="['/editProduct', product]" (click)="setSelectedProduct(product.productId, i)" attr.aria-label="Edit product {{ product.productName }}">Edit</a>
+                </td>
+                <td>
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#deleteProductModal" (click)="productIdToDelete = product.productId" attr.aria-label="Delete product {{ product.productName }}">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="deleteProductModalLabel">Confirmation</h1>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the product?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="acceptDeleteBtn" class="close" data-bs-dismiss="modal" type="button" class="btn btn-primary" (click)="delete(productIdToDelete)" aria-label="Accept the delete of the product">Accept</button>
+            </div>
+        </div>
+    </div>
+</div>

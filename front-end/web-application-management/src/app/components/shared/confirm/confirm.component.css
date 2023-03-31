@@ -1,0 +1,56 @@
+button {
+    background-color: #39598C;
+    border-color: #39598C;
+    color: #ffffff;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+}
+
+button.btn:hover {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+}
+
+.btn:focus {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+    outline: 2px solid #05C5DC;
+    outline-offset: 2px;
+}
+
+button.cancel-style {
+    background-color: #000000;
+    border-color: #000000;
+}
+
+button.cancel-style:hover {
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #ffffff;
+}
+
+button.cancel-style:focus {
+    background-color: #ffffff;
+    border-color: #000000;
+    color: #000000;
+    outline: 2px solid #05C5DC;
+    outline-offset: 2px;
+}
+
+h1 {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    color: #003366;
+}
+
+p {
+    margin: 1rem;
+}
+
+hr {
+    border-color: black;
+    margin: 1rem;
+}

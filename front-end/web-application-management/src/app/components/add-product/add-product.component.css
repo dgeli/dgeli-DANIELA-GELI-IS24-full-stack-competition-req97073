@@ -1,0 +1,103 @@
+h1 {
+    margin-bottom: 1rem;
+    color: #003366;
+    font-size: 1.7rem;
+}
+
+label {
+    margin-top: 1rem;
+}
+
+.btn {
+    background-color: #39598C;
+    border-color: #39598C;
+    color: #ffffff;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+}
+
+.btn:focus {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+    outline: 2px solid #05C5DC;
+    outline-offset: 2px;
+}
+
+a {
+    color: #39598C;
+}
+
+a:focus {
+    outline: 2px solid #05C5DC;
+    outline-offset: 2px;
+}
+
+.breadcrumb-style {
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.form-style {
+    padding-bottom: 2rem;
+    width: 40%;
+    background-color: #f1f1f2;
+}
+
+select {
+    width: 100%;
+    border-radius: 0.3rem;
+}
+
+input,
+select {
+    border-color: #26639C;
+    border-width: 0.13rem;
+}
+
+input:focus,
+select:focus {
+    border-color: #000000;
+    border-width: 0.15rem;
+}
+
+p {
+    margin-bottom: 0rem;
+}
+
+.input-add-style {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 0;
+    height: 2.5rem;
+}
+
+.developer-style {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-add {
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+}
+
+.btn-delete {
+    margin-bottom: 1rem;
+    margin-right: 0.3rem;
+    margin-top: 0;
+}
+
+div.form-row {
+    display: flex;
+}
+
+.form-group {
+    flex: 1 1 300px;
+    margin: 0.5rem;
+}
